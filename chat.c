@@ -1,5 +1,17 @@
 #include "servpipe.h"
 
+t_conv *recup_chat(t_conv *chat)
+{
+  static t_conv *schat = NULL;
+
+  if (!chat)
+    return (schat);
+  schat = chat;
+  if (chat == (t_conv *)-1)
+    printf("liberation memoire\n");
+  return (NULL);
+}
+
 t_conv *find_login(char *login, t_conv *chat)
 {
   ft_putstr("find_login");
@@ -7,10 +19,8 @@ t_conv *find_login(char *login, t_conv *chat)
     return (NULL);
   while (chat->prev)
     chat = chat->prev;
-  ft_putstr("find_login tet\n");
   while (chat->login && login && ft_strcmp(chat->login, login))
     chat = chat->next;
-  ft_putstr("find_login settt\n");
   if (!(ft_strcmp(chat->login, login)))
     return (chat);
   ft_putstr("find_login out\n");

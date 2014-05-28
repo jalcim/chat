@@ -1,12 +1,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void error(char *strerr)
-{
-  write(1, strerr, sizeof(*strerr));
-  exit(-1);
-}
-
 void init_chat()
 {
   int *pipe;

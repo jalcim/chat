@@ -3,6 +3,6 @@
 
 void error(char *str)
 {
-  perror("error ->");
+  perror(str);
   exit(-1);
 }

@@ -44,6 +44,7 @@ void start_chat()
       maj_conv(chat, buffer);
     }
   //end
+  printf("sizefd = %d\n", sizefd);
   while (chat->prev)
     chat = chat->prev;
   int i = 0;

@@ -1,0 +1,22 @@
+chat.c:  if (!chat || !chat->login)
+chat.c:  while (chat->prev)//retour debut chaine
+chat.c:    chat = chat->prev;
+chat.c:  while (chat->login && login && strcmp(chat->login, login))
+chat.c:    chat = chat->next;
+chat.c:  if (!(strcmp(chat->login, login)))//verification
+chat.c:  if (!(chat->login = login))
+chat.c:  if (!(chat->conv = malloc(sizeof(char *) * 2)))
+chat.c:  chat->conv[0] = NULL;
+chat.c:  chat->conv[1] = NULL;
+chat.c:  chat->cpt = 0;
+chat.c:  if (chat->cpt)
+chat.c:    chat->conv = ft_repointe(chat->conv, chat->cpt);
+chat.c:  chat->conv[chat->cpt] = buffer;
+chat.c:  printf(" xxxx = %p : xxxxxx = %p\n", chat->conv[chat->cpt], buffer); 
+chat.c:  printf("2 chat->conv = :%s:\n", chat->conv[chat->cpt]);
+chat.c:  chat->cpt++;
+chat.c:  chat->conv[chat->cpt] = NULL;
+servpipe.c:      printf("chat->log :%s:\n", chat->login);
+servpipe.c:      printf("chat->conv :%s:\n", chat->conv[chat->cpt -1]);
+servpipe.c:  while (i <= chat->cpt)
+servpipe.c:      printf("%s envoie %s\n\n\n\n", chat->login, chat->conv[i]);

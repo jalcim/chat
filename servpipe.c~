@@ -44,6 +44,9 @@ void start_chat()
 	  printf("chat creer\n");
 	}
       maj_conv(chat, buffer);
+      printf("chat->log :%s:\n", chat->login);
+      printf("chat->conv :%s:\n", chat->conv[chat->cpt -1]);
+      printf("?\n");
     }
   printf("sizefd = %d\n", sizefd);
   int i = 0;
@@ -53,4 +56,8 @@ void start_chat()
       i++;
     }
   printf("exit\n");
- }
+  if (login)
+    printf("login = :%s:\n", login);
+  if (buffer)
+    printf("buffer = :%s:\n", buffer);
+}

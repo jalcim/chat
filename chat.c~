@@ -14,7 +14,7 @@ t_conv *recup_chat(t_conv *chat)
 
 t_conv *find_login(char *login, t_conv *chat)
 {
-  printf("find_login\n");
+  printf("find_login");
   if (!chat || !chat->login)
     return (NULL);
   while (chat->prev)//retour debut chaine
@@ -44,6 +44,7 @@ t_conv *creat_conv(char *login)
   chat->conv[1] = NULL;
   chat->cpt = 0;
   add_chain(chat);
+
   printf("conversation ajouter\n");
   return (chat);
 }
@@ -69,6 +70,9 @@ void maj_conv(t_conv *chat, char *buffer)
   if (chat->cpt)
     chat->conv = ft_repointe(chat->conv, chat->cpt);
   chat->conv[chat->cpt] = buffer;
+  printf(" xxxx = %p : xxxxxx = %p\n", chat->conv[chat->cpt], buffer); 
+  printf("1 buffer = :%s:\n", buffer);
+  printf("2 chat->conv = :%s:\n", chat->conv[chat->cpt]);
   chat->cpt++;
   chat->conv[chat->cpt] = NULL;
 }
@@ -84,7 +88,15 @@ char **ft_repointe(char **tab1, int cpt)
   compt = 0;
   while (compt < cpt)
     {
+      if (!(tab1[compt]))
+	{
+	  printf("error point\n");
+	  exit(-1);
+	}
       new[compt] = tab1[compt];
+      printf("repointe tab[%d]\n", compt);
+      printf(" addr = :%p: \n", tab1[compt]);
+      printf("= :%s:\n\n", tab1[compt]);
       compt++;
     }
   new[compt] = NULL;

@@ -1,14 +1,16 @@
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
+int *recup_pipe(int *pipe);
 void init_chat()
 {
-  int *pipe;
+  int *pipefd;
 
-  if (!(pipe = (int *)malloc(2*sizeof(int))))
+  if (!(pipefd = (int *)malloc(2*sizeof(int))))
     error("malloc error\n");
-  pipe(pipe);
-  recup_pipe(pipe);
+  pipe(pipefd);
+  recup_pipe(pipefd);
 }
 
 int *recup_pipe(int *pipe)
@@ -16,12 +18,19 @@ int *recup_pipe(int *pipe)
   static int *s_pipe = NULL;
 
   if (!pipe)
-    return (s_pipe);
-  else if (pipe != -1)
-    s_pipe = pipe;
+    {
+      printf("recup_pipe ret\n");
+      return (s_pipe);
+    }
+  else if (pipe != (int *)-1)
+    {
+      printf("recup_pipe reg\n");
+      s_pipe = pipe;
+    }
   else
     if (s_pipe)
       {
+	printf("recup_pipe free\n");
 	close(s_pipe[0]);
 	close(s_pipe[1]);
 	free(s_pipe);

@@ -2,6 +2,8 @@
 #define __servpipe__
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
 #include "libsock/ft_inet.h"
 #include "libft/includes/libft.h"
 
@@ -26,5 +28,7 @@ t_conv *creat_conv(char *login);
 t_conv *find_login(char *login, t_conv *chat);
 void start_chat();
 int chat(char *login, char *buffer);
+int size_fd(int fd);
+
 #include <stdio.h>
 #endif

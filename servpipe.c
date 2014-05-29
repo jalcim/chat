@@ -7,9 +7,9 @@ int chat(char *login, char *buffer)
   if (!(fd = recup_pipe(NULL)))
     return (-1);
   printf("ecriture de la part de :%s: message :%s:\n",login, buffer);
-  write(fd[1], login, ft_strlen(login));
+  write(fd[1], login, strlen(login));
   write(fd[1], "\0", 1);
-  write(fd[1], buffer, ft_strlen(buffer));
+  write(fd[1], buffer, strlen(buffer));
   write(fd[1], "\0", 1);
   return (0);
 }
@@ -21,27 +21,27 @@ void start_chat()
   char *buffer;
   char *login;
 
-  static int test = -1;
-
+  login = NULL;
+  buffer = NULL;
   printf("start_chat\n");
-   chat = recup_chat(NULL);
+  chat = recup_chat(NULL);
     if (chat)
-      ft_putstr("chat recup");
+      printf("chat recup\n");
   fd = recup_pipe(NULL);
-  while (size_fd(fd[0]))
+  int sizefd;
+  while ((sizefd = size_fd(fd[0])))
     {
+      printf("sizefd = %d\n", sizefd);
       if ((!(login = ft_fd_in_str(fd[0])))
 	  || (!(buffer = ft_fd_in_str(fd[0]))))
 	break;
-
-      printf("tour %d\n", ++test);
       printf("lecture de la part de :%s: message :%s:\n",login, buffer);
       if ((chat = find_login(login, chat)))
-	  ft_putstr("chat trouver\n");
+	printf("chat trouver\n");
       else
 	{
 	  chat = creat_conv(login);
-	  ft_putstr("chat creer\n");
+	  printf("chat creer\n");
 	}
       maj_conv(chat, buffer);
       printf("chat->log :%s:\n", chat->login);
@@ -49,8 +49,9 @@ void start_chat()
       printf("?\n");
     }
   printf("exit\n");
+  printf("sizefd = %d\n", sizefd);
   if (login)
-    ft_putendl(login);
+    printf("login = :%s:\n", login);
   if (buffer)
-    ft_putendl(buffer);
+    printf("buffer = :%s:\n", buffer);
 }

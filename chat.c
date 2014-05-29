@@ -20,7 +20,7 @@ t_conv *find_login(char *login, t_conv *chat)
   while (chat->prev)//retour debut chaine
     chat = chat->prev;
   //search login
-  while (chat->login && login && strcmp(chat->login, login))
+  while (chat->next && chat->login && login && strcmp(chat->login, login))
     chat = chat->next;
   if (!(strcmp(chat->login, login)))//verification
     return (chat);

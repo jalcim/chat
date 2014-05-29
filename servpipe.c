@@ -46,11 +46,22 @@ void start_chat()
       maj_conv(chat, buffer);
     }
   printf("sizefd = %d\n", sizefd);
+  while (chat->prev)
+    chat = chat->prev;
   int i = 0;
-  while (i <= chat->cpt)
+  int b = 1;
+  while (b)
     {
-      printf("%s envoie %s\n\n\n\n", chat->login, chat->conv[i]);
-      i++;
+      while (i < chat->cpt)
+	{
+	  printf("%s envoie %s\n\n\n\n", chat->login, chat->conv[i]);
+	  i++;
+	}
+      i = 0;
+      if (chat->next)
+	chat = chat->next;
+      else
+	b = 0;
     }
   printf("exit\n");
  }

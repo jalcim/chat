@@ -14,6 +14,7 @@ struct s_conv
   char *login;
   char **conv;
   int cpt;
+  int cpt_read;
 
   t_conv *next;
   t_conv *prev;
@@ -30,5 +31,4 @@ void start_chat();
 int chat(char *login, char *buffer);
 int size_fd(int fd);
 
-#include <stdio.h>
 #endif

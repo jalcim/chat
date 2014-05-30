@@ -3,12 +3,27 @@
 t_conv *recup_chat(t_conv *chat)
 {
   static t_conv *schat = NULL;
+  int compt;
 
   if (!chat)
     return (schat);
-  schat = chat;
-  if (chat == (t_conv *)-1)
-    printf("liberation memoire\n");
+  else if (chat == (t_conv *)-1 && schat)
+    while (schat->next)
+      {
+	schat = schat->next;
+	compt = -1;
+	if (schat->prev)
+	  {
+	    while (++compt < schat->prev->cpt)
+	      if (schat->prev->conv[compt])
+		free(schat->prev->conv[compt]);
+	    free(schat->prev->login);
+	    free(schat->prev);
+	    schat->prev = NULL;
+	  }
+      }
+  else
+    schat = chat;
   return (NULL);
 }
 
@@ -17,15 +32,14 @@ t_conv *find_login(char *login, t_conv *chat)
   printf("find_login\n");
   if (!chat || !chat->login)
     return (NULL);
-  while (chat->prev)//retour debut chaine
+  while (chat->prev)
     chat = chat->prev;
-  //search login
   while (chat->next && chat->login && login && strcmp(chat->login, login))
     chat = chat->next;
-  if (!(strcmp(chat->login, login)))//verification
+  if (!(strcmp(chat->login, login)))
     return (chat);
   printf("find_login out\n");
-  return (NULL);//retour
+  return (NULL);
 }
 
 void add_chain(t_conv *block);

@@ -1,6 +1,4 @@
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "servpipe.h"
 
 int *recup_pipe(int *pipe);
 void init_chat()

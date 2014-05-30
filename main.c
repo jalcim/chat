@@ -20,4 +20,5 @@ int main()
   sleep(1);
   start_chat();
   recup_chat((t_conv *)-1);
+  return (0);
 }

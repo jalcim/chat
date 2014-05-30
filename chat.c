@@ -54,7 +54,7 @@ void add_chain(t_conv *block)
 
   block->next = NULL;
   block->prev = NULL;
-  if (chain = recup_chat(NULL))
+  if ((chain = recup_chat(NULL)))
     {
       block->next = chain;
       chain->prev = block;
@@ -77,7 +77,6 @@ char **ft_repointe(char **tab1, int cpt)
 {
   char **new;
   int compt;
-  int tmp;
 
   printf("reajustement des pointeurs cpt = %d\n", cpt);
   new = (char **)malloc((cpt * sizeof(char *)) + sizeof(char *));

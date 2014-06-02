@@ -57,7 +57,6 @@ t_conv *creat_conv(char *login)
   chat->conv[0] = NULL;
   chat->conv[1] = NULL;
   chat->cpt = 0;
-  chat->cpt_read = 0;
   add_chain(chat);
   printf("conversation ajouter\n");
   return (chat);
@@ -77,26 +76,15 @@ void add_chain(t_conv *block)
   recup_chat(block);
 }
 
-void print_struct(t_conv *chat);
 char **ft_repointe(char **tab1, int cpt);
 void maj_conv(t_conv *chat, char *buffer)
 {
   printf("maj conv\n");
-  printf("cpt = %d\n", chat->cpt);
   if (chat->cpt)
-    {
-      printf("maj conv conv = :%p:\n", chat->conv[chat->cpt-1]);
-      chat->conv = ft_repointe(chat->conv, chat->cpt);
-    }
-  printf("cpt = %d\n", chat->cpt);
-  printf("maj conv buffer = :%p:\n", buffer);
+    chat->conv = ft_repointe(chat->conv, chat->cpt);
   chat->conv[chat->cpt] = buffer;
-  printf("cpt = %d\n", chat->cpt);
-  printf("maj conv conv = :%p:\n", chat->conv[chat->cpt]);
   chat->cpt++;
   chat->conv[chat->cpt] = NULL;
-  printf("maj conv out\n");
-  print_struct(chat);
 }
 
 char **ft_repointe(char **tab1, int cpt)
@@ -105,16 +93,14 @@ char **ft_repointe(char **tab1, int cpt)
   int compt;
 
   printf("reajustement des pointeurs cpt = %d\n", cpt);
-  printf("malloc :%d:\n", cpt+1);
-  new = (char **)malloc((cpt+1 * sizeof(char *)) + sizeof(char *));
-  compt = -1;
-  while (++compt < cpt)
+  new = (char **)malloc((cpt * sizeof(char *)) + sizeof(char *));
+  compt = 0;
+  while (compt < cpt)
     {
-      printf("compt = %d\n", compt);
       new[compt] = tab1[compt];
-      printf("tab[%d] = :%p:\n", compt, tab1[compt]);
+      compt++;
     }
-  new[cpt] = NULL;
+  new[compt] = NULL;
   printf("reajustement des pointeurs out\n");
   return (new);
 }

@@ -11,24 +11,17 @@ int main()
       chat("jalcim", "test 3");
       chat("joe", "tesst 2");
       chat("jalcim", "test 4");
+      chat("jalcim", "test 5");
+      chat("jalcim", "test 6");
+      chat("jalcim", "test 7");
       chat("minot", "tesst 1");
       chat("minot", "tesst 2");
       chat("minot", "tesst 3");
       chat("minas", "tesst 1");
-      chat("minot", "tesst 4");
-      chat("minot", "tesst 5");
-      chat("minot", "tesst 6");
-      chat("minot", "tesst 7");
-      chat("minas", "tesst 2");
-      chat("minas", "tesst 3");
-      chat("minas", "tesst 4");
-      chat("minas", "tesst 5");
-      chat("minas", "tesst 6");
       exit(0);
     }
   sleep(1);
   start_chat();
-  printf("ok\n");
   recup_chat((t_conv *)-1);
   return (0);
 }

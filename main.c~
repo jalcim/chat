@@ -29,6 +29,6 @@ int main()
   sleep(1);
   start_chat();
   printf("ok\n");
-  //  recup_chat((t_conv *)-1);
+  recup_chat((t_conv *)-1);
   return (0);
 }

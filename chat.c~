@@ -73,8 +73,8 @@ void add_chain(t_conv *block)
     {
       block->next = chain;
       chain->prev = block;
-      recup_chat(block);
     }
+  recup_chat(block);
 }
 
 void print_struct(t_conv *chat);
@@ -82,9 +82,17 @@ char **ft_repointe(char **tab1, int cpt);
 void maj_conv(t_conv *chat, char *buffer)
 {
   printf("maj conv\n");
+  printf("cpt = %d\n", chat->cpt);
   if (chat->cpt)
-    chat->conv = ft_repointe(chat->conv, chat->cpt);
+    {
+      printf("maj conv conv = :%p:\n", chat->conv[chat->cpt-1]);
+      chat->conv = ft_repointe(chat->conv, chat->cpt);
+    }
+  printf("cpt = %d\n", chat->cpt);
+  printf("maj conv buffer = :%p:\n", buffer);
   chat->conv[chat->cpt] = buffer;
+  printf("cpt = %d\n", chat->cpt);
+  printf("maj conv conv = :%p:\n", chat->conv[chat->cpt]);
   chat->cpt++;
   chat->conv[chat->cpt] = NULL;
   printf("maj conv out\n");

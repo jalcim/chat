@@ -46,8 +46,6 @@ void start_chat()
 	}
       maj_conv(chat, buffer);
       printf("start buffer = :%s:\n", buffer);
-      login = NULL;
-      buffer = NULL;
     }
   //  recup_chat(chat);
     print_struct(chat);
@@ -55,22 +53,28 @@ void start_chat()
 
 void print_struct(t_conv *chat)
 {
-  //  int b = 1;
+  int b = 1;
 
   printf("print_struct\n");
   dup2(2, 1);
-  //  while (chat->prev)
-  //chat = chat->prev;
-  //  while (b)
-  //{
+  while (chat->prev)
+    {
+      printf("prev\n\n"); 
+      chat = chat->prev;
+    }
+  while (b)
+    {
       while (print_str_struct(chat))
 	{}
       chat->cpt_read = 0;
-      //      if (chat->next)
-      //chat = chat->next;
-      //      else
-	//b = 0;
-      // }
+      if (chat->next)
+	{
+	  printf("next\n\n");
+	  chat = chat->next;
+	}
+      else
+	b = 0;
+    }
   printf("print_struct out\n");
 }
 
@@ -83,8 +87,9 @@ int print_str_struct(t_conv *chat)
   if (!chat->conv[chat->cpt_read])
     printf("error structure\n");
   printf("aff\n");
-  printf("login :%s: chat conv[%d] sur [%d]= :%s:\n", 
+  printf("login :%s: chat conv[%d] sur [%d]= :%p:\n", 
 	 chat->login, chat->cpt_read, chat->cpt, chat->conv[chat->cpt_read]);
+  printf(":%s:\n", chat->conv[chat->cpt_read]);
   printf("XD\n");
   chat->cpt_read++;
   return (1);

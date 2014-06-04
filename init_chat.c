@@ -34,3 +34,30 @@ int *recup_pipefd(int *pipe)
       } 
   return (NULL);
 }
+
+t_conv *recup_chat(t_conv *chat)
+{
+  static t_conv *schat = NULL;
+  int compt;
+
+  if (!chat)
+    return (schat);
+  /*  else if (chat == (t_conv *)-1 && schat)
+    while (schat->next)
+      {
+	schat = schat->next;
+	compt = -1;
+	if (schat->prev)
+	  {
+	    while (++compt < schat->prev->cpt)
+	      if (schat->prev->conv[compt])
+		free(schat->prev->conv[compt]);
+	    free(schat->prev->login);
+	    free(schat->prev);
+	    schat->prev = NULL;
+	  }
+	  }*/
+  else
+    schat = chat;
+  return (NULL);
+}

@@ -1,32 +1,5 @@
 #include "servpipe.h"
 
-t_conv *recup_chat(t_conv *chat)
-{
-  static t_conv *schat = NULL;
-  int compt;
-
-  if (!chat)
-    return (schat);
-  else if (chat == (t_conv *)-1 && schat)
-    while (schat->next)
-      {
-	schat = schat->next;
-	compt = -1;
-	if (schat->prev)
-	  {
-	    while (++compt < schat->prev->cpt)
-	      if (schat->prev->conv[compt])
-		free(schat->prev->conv[compt]);
-	    free(schat->prev->login);
-	    free(schat->prev);
-	    schat->prev = NULL;
-	  }
-      }
-  else
-    schat = chat;
-  return (NULL);
-}
-
 t_conv *find_login(char *login, t_conv *chat)
 {
   printf("find_login\n");
@@ -71,8 +44,14 @@ void add_chain(t_conv *block)
   block->prev = NULL;
   if ((chain = recup_chat(NULL)))
     {
+      printf("chain\n\n\n");
       block->next = chain;
       chain->prev = block;
+      recup_chat(block);
+    }
+  else
+    {
+      printf("init_recup_chat\n\n\n\n");
       recup_chat(block);
     }
 }
@@ -81,7 +60,7 @@ void print_struct(t_conv *chat);
 char **ft_repointe(char **tab1, int cpt);
 void maj_conv(t_conv *chat, char *buffer)
 {
-  printf("maj conv\n");
+  printf("maj conv :%s:\n", chat->login);
   if (chat->cpt)
     chat->conv = ft_repointe(chat->conv, chat->cpt);
   chat->conv[chat->cpt] = buffer;
@@ -100,13 +79,17 @@ char **ft_repointe(char **tab1, int cpt)
   printf("malloc :%d:\n", cpt+1);
   new = (char **)malloc((cpt+1 * sizeof(char *)) + sizeof(char *));
   compt = -1;
-  while (++compt < cpt)
+    while (++compt < cpt)
     {
       printf("compt = %d\n", compt);
+      printf("tab = :%p:\n", tab1[compt]);
+      printf("new = :%s:\n", tab1[compt]);
       new[compt] = tab1[compt];
-      printf("tab[%d] = :%p:\n", compt, tab1[compt]);
-    }
+      printf("new = :%p:\n", new[compt]);
+      printf("new = :%s:\n\n\n", new[compt]);
+      }
   new[cpt] = NULL;
   printf("reajustement des pointeurs out\n");
+  free(tab1);
   return (new);
 }

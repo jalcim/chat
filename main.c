@@ -24,6 +24,12 @@ int main()
       chat("minas", "tesst 4");
       chat("minas", "tesst 5");
       chat("minas", "tesst 6");
+      chat("minas", "tesst 7");
+      chat("minas", "tesst 8");
+      chat("minas", "tesst 9");
+      chat("minas", "tesst 10");
+      chat("minas", "tesst 11");
+      chat("minas", "tesst 12");
       exit(0);
     }
   sleep(1);
